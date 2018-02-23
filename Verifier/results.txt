@@ -1,0 +1,75 @@
+Group 1: 
+This solution is valid
+
+Group 2: 
+This solution is invalid
+
+Group 3: 
+This solution is valid
+
+Group 4: 
+This solution is valid
+
+Group 5: 
+This solution is invalid
+
+Group 6: 
+This solution is invalid
+
+Group 7: 
+This solution is invalid
+
+Group 8: 
+This solution is invalid
+
+Group 9: 
+This solution is valid
+
+Group 10: 
+This solution is invalid
+
+Group 11: 
+This solution is invalid
+
+Group 12: 
+This solution is valid
+
+Group 13: 
+This solution is valid
+
+Group 14: 
+This solution is valid
+
+Group 15: 
+This solution is valid
+
+Group 16: 
+This solution is valid
+
+Group 19: 
+This solution is valid
+
+Group 20: 
+This solution is valid
+
+Group 21: 
+This solution is valid
+
+Group 22: 
+This solution is invalid
+
+Group 23: 
+This solution is valid
+
+Group 24: 
+This solution is valid
+
+Group 26: 
+This solution is valid
+
+Group 27: 
+This solution is valid
+
+Group 28: 
+This solution is valid
+

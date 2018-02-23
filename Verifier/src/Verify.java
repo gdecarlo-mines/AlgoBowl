@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,27 +33,62 @@ public class Verify {
 	// main driver function
 	public static void main(String args[]) {
 
-		String inputFile = "groupInputs/input_group19.txt";
-		String solutionFile = "solnToGroupInputs/solution19.txt";
+		String inputFile = "testInputs/input_Mehtallica.txt";
+		//String solutionFile = "potential_Mehtallica_soln.txt";
 
 		Verify main = new Verify(inputFile);
-		main.verifySolution(solutionFile);
+		//main.verifySolution(solutionFile);
 
-		/*
+		// generate map that pairs groups with their solutions
 		Map<Integer, String> allGroupSolns = new HashMap<Integer, String>();
 		int numGroups = 28;
+
 		for (int i = 1; i <= numGroups; i++) {
-			allGroupSolns.put(i, "output_from_" + i + "_to_18.txt");
+			if (i == 18 || i == 17 || i == 25) {
+				continue;
+			}
+			else {
+				allGroupSolns.put(i, "output_from_" + i + "_to_18.txt");
+			}
 		}
-		 */
-		// System.out.println(allGroupSolns);
+		//System.out.println(allGroupSolns);
+
+		main = new Verify("testInputs/input_Mehtallica.txt");
+
+		//main.verifySolution(solutionFile)
+		// Run through other groups solutions to Mehtallica input
+		try {
+			PrintWriter results = new PrintWriter("results.txt", "UTF-8");
+			for (Integer i : allGroupSolns.keySet()) {
+				
+				//System.out.println("Group " + i +": "); 
+				//main.verifySolution("groupSolnTo18Input/"+allGroupSolns.get(i));
+				//System.out.println("\n");
+				
+				results.println("Group " + i +": ");
+				System.out.println("Group " + i +": "); 
+				if (main.verifySolution("groupSolnTo18Input/"+allGroupSolns.get(i))) {
+					results.println("Solution is valid\n");
+				}
+				else {
+					results.println("Solution is invalid\n");
+				}
+				System.out.println("\n");
+				
+			}
+			results.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Specified file not found");
+		} catch (UnsupportedEncodingException e) {
+			System.out.println("Encoding type is not supported");
+		}
 	}
-	
+
 	// condense verification of size and weight into one function call
 	public boolean verifySolution(String solutionFile) {
-		
+
 		Solution solution = new Solution(solutionFile);
-		
+
 		if (verifyWeight(solution) & verifySizes(solution)) {
 			System.out.println("Solution is valid");
 			return true;
@@ -101,7 +138,7 @@ public class Verify {
 			return false;
 		}
 	}
-	
+
 	// check that all the nodes are evenly distributed between the two sets of the solution
 	public boolean verifySizes(Solution solution) {
 
