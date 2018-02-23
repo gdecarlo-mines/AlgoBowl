@@ -44,7 +44,7 @@ public class Verify {
 		int numGroups = 28;
 
 		for (int i = 1; i <= numGroups; i++) {
-			if (i == 18 || i == 17 || i == 25) {
+			if (i == 18) {
 				continue;
 			}
 			else {
