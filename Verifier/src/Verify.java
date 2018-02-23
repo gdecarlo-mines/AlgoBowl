@@ -32,7 +32,7 @@ public class Verify {
 
 	// main driver function
 	public static void main(String args[]) {
-		
+
 		String inputFile = "testInputs/input_Mehtallica.txt";
 		//String solutionFile = "potential_Mehtallica_soln.txt";
 
@@ -42,7 +42,7 @@ public class Verify {
 		// generate map that pairs groups with their solutions
 		Map<Integer, String> allGroupSolns = new HashMap<Integer, String>();
 		int numGroups = 28;
-
+/*
 		for (int i = 1; i <= numGroups; i++) {
 			if (i == 18 || i == 17 || i == 25) {
 				continue;
@@ -52,50 +52,31 @@ public class Verify {
 			}
 		}
 		//System.out.println(allGroupSolns);
-
-		//main = new Verify("testInputs/input_Mehtallica.txt");
-		/*
-		//main.verifySolution(solutionFile)
-		// Run through other groups solutions to Mehtallica input
-		try {
-			PrintWriter results = new PrintWriter("results.txt", "UTF-8");
-			for (Integer i : allGroupSolns.keySet()) {
-				
-				//System.out.println("Group " + i +": "); 
-				//main.verifySolution("groupSolnTo18Input/"+allGroupSolns.get(i));
-				//System.out.println("\n");
-				
-				results.println("Group " + i +": ");
-				System.out.println("Group " + i +": "); 
-				if (main.verifySolution("groupSolnTo18Input/"+allGroupSolns.get(i))) {
-					results.println("Solution is valid\n");
-				}
-				else {
-					results.println("Solution is invalid\n");
-				}
-				System.out.println("\n");
-				
-			}
-			results.close();
-		} catch (FileNotFoundException e) {
-			System.out.println("Specified file not found");
-		} catch (UnsupportedEncodingException e) {
-			System.out.println("Encoding type is not supported");
-		}
-		*/
 		
+		Verify main = new Verify("testInputs/input_Mehtallica.txt");
+
+		//main.verifySolution(solutionFile)
+		/*
+		// Run through other groups solutions to Mehtallica input
+		for (Integer i : allGroupSolns.keySet()) {
+
+			System.out.println("Group " + i +": "); 
+			main.verifySolution("groupSolnTo18Input/"+allGroupSolns.get(i));
+			System.out.println("\n");
+
+		}
+*/
+
 		for (int i = 1; i <= 28; i++) {
 			Verify input = new Verify("groupInputs/input_group"+i+".txt");
-			String soln = "solnToGroupInputs/solution"+i+"_b.txt";
-			System.out.println("Group "+i);
-				if (input.verifySolution(soln)) {
-					System.out.println("Solution is valid");
-				}
-				else {
-					System.out.println("Solution is invalid");
-				}
+			String soln = "solnToGroupInputs/output_b/solution"+i+"_b.txt";
+			//String soln = "solnToGroupInputs/output_g/outputFile"+i+"_g.txt";
+
+			input.verifySolution(soln);
+			System.out.println("For Group "+i);
 			System.out.println("\n");
 		}
+
 	}
 
 	// condense verification of size and weight into one function call
