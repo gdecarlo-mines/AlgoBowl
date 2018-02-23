@@ -42,7 +42,7 @@ public class Verify {
 		// generate map that pairs groups with their solutions
 		Map<Integer, String> allGroupSolns = new HashMap<Integer, String>();
 		int numGroups = 28;
-/*
+
 		for (int i = 1; i <= numGroups; i++) {
 			if (i == 18 || i == 17 || i == 25) {
 				continue;
@@ -56,7 +56,7 @@ public class Verify {
 		Verify main = new Verify("testInputs/input_Mehtallica.txt");
 
 		//main.verifySolution(solutionFile)
-		/*
+		
 		// Run through other groups solutions to Mehtallica input
 		for (Integer i : allGroupSolns.keySet()) {
 
@@ -65,8 +65,8 @@ public class Verify {
 			System.out.println("\n");
 
 		}
-*/
 
+		/*
 		for (int i = 1; i <= 28; i++) {
 			Verify input = new Verify("groupInputs/input_group"+i+".txt");
 			String soln = "solnToGroupInputs/output_b/solution"+i+"_b.txt";
@@ -76,6 +76,7 @@ public class Verify {
 			System.out.println("For Group "+i);
 			System.out.println("\n");
 		}
+		*/
 
 	}
 
