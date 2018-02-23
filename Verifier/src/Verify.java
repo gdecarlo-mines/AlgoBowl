@@ -32,11 +32,11 @@ public class Verify {
 
 	// main driver function
 	public static void main(String args[]) {
-
+		
 		String inputFile = "testInputs/input_Mehtallica.txt";
 		//String solutionFile = "potential_Mehtallica_soln.txt";
 
-		Verify main = new Verify(inputFile);
+		//Verify main = new Verify(inputFile);
 		//main.verifySolution(solutionFile);
 
 		// generate map that pairs groups with their solutions
@@ -53,8 +53,8 @@ public class Verify {
 		}
 		//System.out.println(allGroupSolns);
 
-		main = new Verify("testInputs/input_Mehtallica.txt");
-
+		//main = new Verify("testInputs/input_Mehtallica.txt");
+		/*
 		//main.verifySolution(solutionFile)
 		// Run through other groups solutions to Mehtallica input
 		try {
@@ -81,6 +81,20 @@ public class Verify {
 			System.out.println("Specified file not found");
 		} catch (UnsupportedEncodingException e) {
 			System.out.println("Encoding type is not supported");
+		}
+		*/
+		
+		for (int i = 1; i <= 28; i++) {
+			Verify input = new Verify("groupInputs/input_group"+i+".txt");
+			String soln = "solnToGroupInputs/solution"+i+"_b.txt";
+			System.out.println("Group "+i);
+				if (input.verifySolution(soln)) {
+					System.out.println("Solution is valid");
+				}
+				else {
+					System.out.println("Solution is invalid");
+				}
+			System.out.println("\n");
 		}
 	}
 
