@@ -14,7 +14,8 @@ import java.util.Set;
 
 public class BowlRun {
 
-	private int numVert;
+	
+	private int numNodes;
 	private ArrayList<Edge> edges;
 	private ArrayList<Integer> list;
 	private ArrayList<Integer> edgeCount;
@@ -25,6 +26,7 @@ public class BowlRun {
 	private Map<Integer, ArrayList<Integer>> myMap;
 	private ArrayList<Integer> traces;
 	private int totalWeight;
+	private ArrayList<Integer> missingNodes;
 	
 	PriorityQueue<Node> myPQ;
 	Comparator<Node> comparator;
@@ -40,10 +42,10 @@ public class BowlRun {
 		set2 = new HashSet<Node>();
 		myMap = new HashMap<Integer, ArrayList<Integer>>();
 		traces = new ArrayList<Integer>();
+		missingNodes = new ArrayList<Integer>();
 		comparator = new CompareEdgeCount();
 		myPQ = new PriorityQueue<Node>(10, comparator);
 
-		numVert = 0;
 		totalWeight = 0;
 	}
 
@@ -51,8 +53,8 @@ public class BowlRun {
 
 		try {
 			@SuppressWarnings("resource")
-			Scanner scan = new Scanner(new File("testData.txt"));
-			numVert = scan.nextInt();
+			Scanner scan = new Scanner(new File("inputData.txt"));
+			numNodes = scan.nextInt();
 			scan.nextInt();
 			while (scan.hasNext()) {
 				Edge edge = new Edge(scan.nextInt(), scan.nextInt(), scan.nextInt());
@@ -75,6 +77,16 @@ public class BowlRun {
 			nodes.add(edges.get(i).getDestination());
 		}
 
+	}
+	
+	private void findMissingNodes() {
+		// TODO Auto-generated method stub
+		for (int i = 1; i < numNodes+1; i++) {
+			if (!nodes.contains(i)) {
+				missingNodes.add(i);
+			}
+		}
+		
 	}
 
 	public void createListOfNodes() {
@@ -122,7 +134,7 @@ public class BowlRun {
 	}
 
 	public void createSets() {
-		int goal = numVert/2;
+		int goal = numNodes/2;
 		int counter = 0;
 	
 		while (counter < goal) {
@@ -157,6 +169,8 @@ public class BowlRun {
 				set2.add(n);
 			}
 		}
+		
+		
 	}
 	
 	public void cutEdges() {
@@ -168,11 +182,9 @@ public class BowlRun {
 					if ((e.getNodePair().contains(n.getIdentity())) && (e.getNodePair().contains(o.getIdentity()))) {			
 						totalWeight += e.getWeight();
 					}
-				}
-				
+				}	
 			}
 		}
-		
 	}
 	
 	public void writeToFile() throws FileNotFoundException {
@@ -180,6 +192,7 @@ public class BowlRun {
 		ArrayList<Integer> setOne = new ArrayList<Integer>();
 		ArrayList<Integer> setTwo = new ArrayList<Integer>();
 		
+		System.out.println("Missing: " + missingNodes.toString());
 		for (Node n : set1) {
 			setOne.add(n.getIdentity());
 		}
@@ -198,7 +211,11 @@ public class BowlRun {
 		for (int i = 0; i < setTwo.size() - 1; i++) {
 			writer.print(setTwo.get(i) + " ");
 		}
-		writer.print(setTwo.get(setTwo.size()-1));
+		
+		for (int i = 0; i < missingNodes.size() ; i++) {
+			writer.print(missingNodes.get(i) + " ");
+		}
+		writer.print(setTwo.get(setTwo.size() - 1));
 		writer.close();
 	}
 
@@ -207,15 +224,21 @@ public class BowlRun {
 		BowlRun run = new BowlRun();
 		run.readData();
 		run.createListFindNodes();
+		run.findMissingNodes();
 		run.createListOfNodes();
 		run.updateNodeList();
 		run.createSets();
 		run.cutEdges();
 		run.writeToFile();
 		System.out.println("List of Nodes: " + run.listNodes.toString());
-		System.out.println("Set1: " + run.set1.toString() + ", Size: " + run.set1.size());
-		System.out.println("Set2: " + run.set2.toString() + ", Size: " + run.set2.size());
+		System.out.println("Total Nodes: " + run.listNodes.size());
+		System.out.println("Set1: " + run.set1.toString() + "\nSize: " + run.set1.size());
+		System.out.println("Set2: " + run.set2.toString() + "\nSize: " + run.set2.size());
 		System.out.println("Total Weight: " + run.totalWeight);
+		System.out.println("Missing Nodes: " + run.missingNodes.toString());
+		System.out.println("Size: " + run.missingNodes.size());
 	}
+
+	
 }
 
